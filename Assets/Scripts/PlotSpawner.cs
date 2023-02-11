@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlotSpawner : MonoBehaviour
 {
 
-    private int initAmount = 5;
-    private float plotSize = 60f;
+    private int initAmount = 10;
+    private float plotSize = 30f;
     private float xPostLeft = -38.25f;
     private float xPosRight = 38.25f;
     private float lastZPos = 15f;
