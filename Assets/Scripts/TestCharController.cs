@@ -18,6 +18,8 @@ public class TestCharController : MonoBehaviour
     private bool isJump = false;
     private bool run = false;
 
+    public GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +29,7 @@ public class TestCharController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float hMovement = Input.GetAxis("Horizontal") * movementSpeed / 2;
+        float hMovement = Input.GetAxis("Horizontal") * movementSpeed / 1.5f;
         // forward
         float vMovement = Input.GetAxis("Vertical") * movementSpeed;
         Vector3 movementDirection = new Vector3(hMovement, 0, vMovement);
@@ -104,7 +106,14 @@ public class TestCharController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        spawnManager.SpawnTriggerEntered();
+        if (other.tag == "SpawnTrigger")
+        {
+            spawnManager.SpawnTriggerEntered();
+        }
+        if (other.tag == "Coin")
+        {
+            gameManager.CoinCollected();
+        }
     }
 
     // Char Animation

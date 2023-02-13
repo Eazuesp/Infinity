@@ -10,6 +10,7 @@ public class ObstacleSpawner : MonoBehaviour
     private int spawnAmount = 3; //4
 
     public List<GameObject> obstacles = new List<GameObject>();
+    public GameObject coins;
 
     // Start is called before the first frame update
     void Start()
@@ -29,14 +30,41 @@ public class ObstacleSpawner : MonoBehaviour
     public void SpawnObstacles()
     {
        // lastSpawnZ += spawnInterval;
-
+ 
         for (int i = 0; i < spawnAmount; i++)
         {
-            // chance 77%
+            bool spawned = false;
+            // chance 75%
             if (Random.Range(0,4) > 0)
             {
                 GameObject obstacle = obstacles[Random.Range(0, obstacles.Count)];
-                Instantiate(obstacle, new Vector3(0, 0.7f, lastSpawnZ), obstacle.transform.rotation);                
+                if (Random.Range(0, 2) == 1)
+                {
+                    Instantiate(obstacle, new Vector3(0, 0.7f, lastSpawnZ), obstacle.transform.rotation);
+                }
+                else
+                {
+                    Instantiate(obstacle, new Vector3(0, 0.7f, lastSpawnZ), new Quaternion(0, 180, 0, 0));
+                }
+                spawned = true;
+            }          
+
+            if (!spawned)
+            {
+                // 0.7 + 0.5 = 1.3
+                int rand = Random.Range(0, 3);
+                float xComp = 0;
+                switch (rand)
+                {
+                    case 0:
+                        xComp = -3.5f;
+                        break;
+                    case 2:
+                        xComp = 3.5f;
+                        break;
+
+                }
+                Instantiate(coins, new Vector3(xComp, 1.3f, lastSpawnZ - 5), coins.transform.rotation);
             }
             lastSpawnZ += spawnInterval;
         }
