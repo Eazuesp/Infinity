@@ -8,7 +8,6 @@ public class TestCharController : MonoBehaviour
 
     public float movementSpeed = 10f;
     public SpawnManager spawnManager;
-
     public float rotationSpeed;
     public float jumpSpeed;
     public CharacterController characterController;
@@ -18,12 +17,17 @@ public class TestCharController : MonoBehaviour
     private bool isJump = false;
     private bool run = false;
 
+    // buffTrigger
+    public CoinDetector coinDetectorSrp;
+
     public GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
         // characterController= GetComponent<CharacterController>();   
+        //coinDetectorSrp = GameObject.FindGameObjectWithTag("Coin Detector").GetComponent<CoinDetector>();
+        coinDetectorSrp = GameObject.FindObjectOfType<CoinDetector>();
     }
 
     // Update is called once per frame
@@ -106,13 +110,26 @@ public class TestCharController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Debug.Log(transform.rotation.y);
         if (other.tag == "SpawnTrigger")
         {
-            spawnManager.SpawnTriggerEntered();
+            if (-.5 < transform.rotation.y && transform.rotation.y < .5)
+            {
+                spawnManager.SpawnTriggerEntered();
+            }
+            else
+            {
+                other.gameObject.GetComponent<Collider>().enabled = false;
+            }
         }
         if (other.tag == "Coin")
         {
             gameManager.CoinCollected();
+        }
+        if (other.tag == "Magnet")
+        {
+            coinDetectorSrp.getMagnet();
+            //StartCoroutine(coinDetectorSrp.ActivateCoin());
         }
     }
 

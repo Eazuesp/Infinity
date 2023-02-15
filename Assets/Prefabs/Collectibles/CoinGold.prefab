@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 4638798393173552787}
   - component: {fileID: 4613606397798360629}
   - component: {fileID: 4622292849725154735}
-  - component: {fileID: 4747932958799326231}
   - component: {fileID: 4708492335633032821}
   - component: {fileID: 4724336749240636385}
   - component: {fileID: -2467588588840632022}
+  - component: {fileID: 7093384789892740741}
   m_Layer: 2
   m_Name: CoinGold
   m_TagString: Coin
@@ -87,23 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4747932958799326231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4644407032884146253}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1315172d7ad53634e952f7d8f3c02048, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollectibleType: 0
-  rotate: 1
-  rotationSpeed: 150
-  collectSound: {fileID: 0}
-  collectEffect: {fileID: 1702657300312902, guid: a45c51da10cf1a84abc6a99c06951e3f, type: 3}
 --- !u!82 &4708492335633032821
 AudioSource:
   m_ObjectHideFlags: 0
@@ -230,3 +213,17 @@ MonoBehaviour:
   rotationSpeed: 150
   collectSound: {fileID: 0}
   collectEffect: {fileID: 1702657300312902, guid: a45c51da10cf1a84abc6a99c06951e3f, type: 3}
+  playerTransform: {fileID: 0}
+  coinMoveSpeed: 17
+--- !u!114 &7093384789892740741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4644407032884146253}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1565f93925d5db74ebbda2914665a48c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

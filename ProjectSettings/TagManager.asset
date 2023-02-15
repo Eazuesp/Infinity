@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - SpawnTrigger
+  - Coin
+  - Coin Detector
+  - Magnet
   layers:
   - Default
   - TransparentFX

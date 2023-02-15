@@ -11,6 +11,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     public List<GameObject> obstacles = new List<GameObject>();
     public GameObject coins;
+    public GameObject magnet;
 
     // Start is called before the first frame update
     void Start()
@@ -64,7 +65,14 @@ public class ObstacleSpawner : MonoBehaviour
                         break;
 
                 }
-                Instantiate(coins, new Vector3(xComp, 1.3f, lastSpawnZ - 5), coins.transform.rotation);
+                if (Random.Range(0, 3) == 1)
+                {
+                    Instantiate(magnet, new Vector3(xComp, 1.3f, lastSpawnZ), magnet.transform.rotation);
+                }
+                else
+                {
+                    Instantiate(coins, new Vector3(xComp, 1.3f, lastSpawnZ), coins.transform.rotation);
+                }
             }
             lastSpawnZ += spawnInterval;
         }
