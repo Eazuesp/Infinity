@@ -21,6 +21,7 @@ public class Coin : MonoBehaviour {
 	public float coinMoveSpeed = 17f;
 
 	CoinMoveScript coinMoveScript;
+	bool attr = false;
 
 
 	// Use this for initialization
@@ -35,6 +36,10 @@ public class Coin : MonoBehaviour {
 
 		if (rotate)
 			transform.Rotate (Vector3.up * rotationSpeed * Time.deltaTime, Space.World);
+		if (attr)
+		{
+			move();
+		}
 
 	}
 
@@ -45,17 +50,27 @@ public class Coin : MonoBehaviour {
 		}
 		if (other.gameObject.tag == ("Coin Detector"))
 		{
-			coinMoveScript.enabled = true;
+			//coinMoveScript.enabled = true;
+			attr = true;
         }
 	}
 
-	public void Collect()
+    public void move()
+    {
+        Vector3 playerPos = new Vector3(playerTransform.position.x, playerTransform.position.y + .4f
+            , playerTransform.position.z);
+        transform.position = Vector3.MoveTowards(transform.position, playerPos,
+            coinMoveSpeed * Time.deltaTime);
+    }
+
+    public void Collect()
 	{
 		if(collectSound)
 			AudioSource.PlayClipAtPoint(collectSound, transform.position);
 		if(collectEffect)
 			Instantiate(collectEffect, transform.position, Quaternion.identity);
 
+		Destroy (gameObject);
 		//Below is space to add in your code for what happens based on the collectible type
 
 		if (CollectibleType == CollectibleTypes.NoType) {
@@ -95,7 +110,6 @@ public class Coin : MonoBehaviour {
 			//Debug.Log ("Do NoType Command");
 		}
 
-		Destroy (gameObject);
 
 	}
 }

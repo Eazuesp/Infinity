@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TestCharController : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class TestCharController : MonoBehaviour
     //    public Rigidbody myRigidbody;
     private bool isJump = false;
     private bool run = false;
+    // speed buff
+    public bool isSpeeding = false;
 
     // buffTrigger
     public CoinDetector coinDetectorSrp;
@@ -98,6 +101,9 @@ public class TestCharController : MonoBehaviour
         velocity.y = ySpeed;
         characterController.Move(velocity * Time.deltaTime);
 
+
+        // characterController.gameObject.GetComponent<Collider>().enabled = false;
+
         if (movementDirection != Vector3.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
@@ -106,7 +112,40 @@ public class TestCharController : MonoBehaviour
         }
     }
 
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (isSpeeding)
+        {
+            movementSpeed = 20f;
+            if (characterController.gameObject.layer != hit.gameObject.layer)
+            {
+                Physics.IgnoreLayerCollision(characterController.gameObject.layer, hit.gameObject.layer, true);
+            }
+            return;
+        }
+        else {
+            Physics.IgnoreLayerCollision(characterController.gameObject.layer, hit.gameObject.layer, false);
+        }
+        //hit.collider.enabled = false;
+        //Rigidbody rigidbody = hit.collider.attachedRigidbody;
+        //if (rigidbody != null)
+        //{
+        //    Debug.Log("hit" + rigidbody.name);
+        //}
 
+        if (hit.gameObject.tag == "Enemy")
+        {
+            SceneManager.LoadScene("Level001");
+        }
+    }
+    //void OnCollisionEnter(Collision collision)
+    //{
+    //    // Debug.Log(transform.rotation.y);
+    //    if (characterController.gameObject.layer != collision.gameObject.layer)
+    //    {
+    //        Physics.IgnoreLayerCollision(characterController.gameObject.layer, collision.gameObject.layer, true);
+    //    }
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -131,6 +170,7 @@ public class TestCharController : MonoBehaviour
             coinDetectorSrp.getMagnet();
             //StartCoroutine(coinDetectorSrp.ActivateCoin());
         }
+
     }
 
     // Char Animation

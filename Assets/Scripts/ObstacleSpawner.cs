@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Xsl;
 using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
@@ -12,6 +14,7 @@ public class ObstacleSpawner : MonoBehaviour
     public List<GameObject> obstacles = new List<GameObject>();
     public GameObject coins;
     public GameObject magnet;
+    public GameObject enemy;
 
     // Start is called before the first frame update
     void Start()
@@ -34,9 +37,9 @@ public class ObstacleSpawner : MonoBehaviour
  
         for (int i = 0; i < spawnAmount; i++)
         {
-            bool spawned = false;
+
             // chance 75%
-            if (Random.Range(0,4) > 0)
+            if (Random.Range(0,4) > 1)
             {
                 GameObject obstacle = obstacles[Random.Range(0, obstacles.Count)];
                 if (Random.Range(0, 2) == 1)
@@ -47,34 +50,45 @@ public class ObstacleSpawner : MonoBehaviour
                 {
                     Instantiate(obstacle, new Vector3(0, 0.7f, lastSpawnZ), new Quaternion(0, 180, 0, 0));
                 }
-                spawned = true;
             }          
-
-            if (!spawned)
+            else
             {
-                // 0.7 + 0.5 = 1.3
-                int rand = Random.Range(0, 3);
-                float xComp = 0;
-                switch (rand)
+                int line1, line2;
+                do
                 {
-                    case 0:
-                        xComp = -3.5f;
-                        break;
-                    case 2:
-                        xComp = 3.5f;
-                        break;
+                    line1 = Random.Range(0, 3);
+                    line2 = Random.Range(0, 3);
+                } while (line1 == line2);
 
-                }
-                if (Random.Range(0, 3) == 1)
+                int type = Random.Range(0, 2);
+                // chance to spawn magnet on no obstacle spot
+                if (type == 0)
                 {
-                    Instantiate(magnet, new Vector3(xComp, 1.3f, lastSpawnZ), magnet.transform.rotation);
+                    // 0.7 + 0.5 = 1.3
+                    Instantiate(magnet, new Vector3(getX(line1), 1.3f, lastSpawnZ), magnet.transform.rotation);
                 }
-                else
+                else if (type == 1)
                 {
-                    Instantiate(coins, new Vector3(xComp, 1.3f, lastSpawnZ), coins.transform.rotation);
+                    Instantiate(coins, new Vector3(getX(line1), 1.3f, lastSpawnZ), coins.transform.rotation);
                 }
+             Instantiate(enemy, new Vector3(getX(line2), 1.3f, lastSpawnZ), enemy.transform.rotation);
             }
             lastSpawnZ += spawnInterval;
         }
+    }
+
+    float getX(int line)
+    {
+        float xComp = 0;
+        switch (line)
+        {
+            case 0:
+                xComp = -3.5f;
+                break;
+            case 2:
+                xComp = 3.5f;
+                break;
+        }
+        return xComp;
     }
 }

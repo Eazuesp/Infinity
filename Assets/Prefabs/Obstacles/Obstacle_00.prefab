@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1482945521205061063}
   - component: {fileID: 4112639502156949380}
   - component: {fileID: 5815867642526472706}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7869620495168691755}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Obstacle_00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,6 +144,10 @@ PrefabInstance:
     - target: {fileID: 1325722543629268815, guid: 0fcd1e8aa53dcd243ae5e85d8c183374, type: 3}
       propertyPath: m_Name
       value: Sand Pit
+      objectReference: {fileID: 0}
+    - target: {fileID: 1325722543629268815, guid: 0fcd1e8aa53dcd243ae5e85d8c183374, type: 3}
+      propertyPath: m_Layer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2611718871084238172, guid: 0fcd1e8aa53dcd243ae5e85d8c183374, type: 3}
       propertyPath: m_RootOrder
@@ -237,6 +241,10 @@ PrefabInstance:
     - target: {fileID: 2551759207985870767, guid: 2a3938a7dc8afd14c8a1c444ed19fab4, type: 3}
       propertyPath: m_Name
       value: Concrete_Barrier_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2551759207985870767, guid: 2a3938a7dc8afd14c8a1c444ed19fab4, type: 3}
+      propertyPath: m_Layer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2892010070900747541, guid: 2a3938a7dc8afd14c8a1c444ed19fab4, type: 3}
       propertyPath: m_RootOrder
@@ -372,6 +380,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monkey Bars
       objectReference: {fileID: 0}
+    - target: {fileID: 3638136606920915749, guid: 38a567cd50afa334790818c745f0ea30, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38a567cd50afa334790818c745f0ea30, type: 3}
 --- !u!4 &6647088427054844478 stripped
@@ -405,9 +417,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7869620495168691755}
     m_Modifications:
+    - target: {fileID: 1113170856327335449, guid: c558ab85e19c3b6419dfbccf7be5029f, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4332597029899624495, guid: c558ab85e19c3b6419dfbccf7be5029f, type: 3}
       propertyPath: m_Name
       value: Coins
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332597029899624495, guid: c558ab85e19c3b6419dfbccf7be5029f, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454777700027758546, guid: c558ab85e19c3b6419dfbccf7be5029f, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6550084700775479071, guid: c558ab85e19c3b6419dfbccf7be5029f, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7614914120888974858, guid: c558ab85e19c3b6419dfbccf7be5029f, type: 3}
       propertyPath: m_RootOrder

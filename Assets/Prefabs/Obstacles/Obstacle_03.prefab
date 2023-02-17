@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1482945521205061063}
   - component: {fileID: 4112639502156949380}
   - component: {fileID: 5815867642526472706}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7869620495168691755}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Obstacle_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,6 +202,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 4 Stair
       objectReference: {fileID: 0}
+    - target: {fileID: 8959348557955188366, guid: d07765670c65f904db7b8d34111df9e8, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d07765670c65f904db7b8d34111df9e8, type: 3}
 --- !u!4 &4983044665878127712 stripped
@@ -238,6 +242,10 @@ PrefabInstance:
     - target: {fileID: 815898803824330168, guid: d96e69b32576efb418704298f785a680, type: 3}
       propertyPath: m_Name
       value: Rock 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 815898803824330168, guid: d96e69b32576efb418704298f785a680, type: 3}
+      propertyPath: m_Layer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4398326316563920811, guid: d96e69b32576efb418704298f785a680, type: 3}
       propertyPath: m_RootOrder
@@ -328,6 +336,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7869620495168691755}
     m_Modifications:
+    - target: {fileID: 321815225242761583, guid: f6170481cfdd7a84b986c639142447dc, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5242244950282228499, guid: f6170481cfdd7a84b986c639142447dc, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -384,9 +396,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7707399504539340912, guid: f6170481cfdd7a84b986c639142447dc, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9123004050336293120, guid: f6170481cfdd7a84b986c639142447dc, type: 3}
       propertyPath: m_Name
       value: Running Wheel
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123004050336293120, guid: f6170481cfdd7a84b986c639142447dc, type: 3}
+      propertyPath: m_Layer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6170481cfdd7a84b986c639142447dc, type: 3}
@@ -421,9 +441,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7869620495168691755}
     m_Modifications:
+    - target: {fileID: 1113170856327335449, guid: c558ab85e19c3b6419dfbccf7be5029f, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4332597029899624495, guid: c558ab85e19c3b6419dfbccf7be5029f, type: 3}
       propertyPath: m_Name
       value: Coins
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332597029899624495, guid: c558ab85e19c3b6419dfbccf7be5029f, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4454777700027758546, guid: c558ab85e19c3b6419dfbccf7be5029f, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6550084700775479071, guid: c558ab85e19c3b6419dfbccf7be5029f, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7614914120888974858, guid: c558ab85e19c3b6419dfbccf7be5029f, type: 3}
       propertyPath: m_RootOrder
@@ -486,6 +522,10 @@ PrefabInstance:
     - target: {fileID: 808260256685271923, guid: e9a4b9dc875a714428cc3fb34ade6455, type: 3}
       propertyPath: m_Name
       value: Slide 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 808260256685271923, guid: e9a4b9dc875a714428cc3fb34ade6455, type: 3}
+      propertyPath: m_Layer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4426156295243716960, guid: e9a4b9dc875a714428cc3fb34ade6455, type: 3}
       propertyPath: m_RootOrder
