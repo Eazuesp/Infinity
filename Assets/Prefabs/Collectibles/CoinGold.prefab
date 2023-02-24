@@ -5025,7 +5025,7 @@ MonoBehaviour:
   CollectibleType: 0
   rotate: 1
   rotationSpeed: 150
-  collectSound: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
+  collectSound: {fileID: 8300000, guid: 1248a4415e55e4d468c29e5b05dcae8e, type: 3}
   collectEffect: {fileID: 8332504446764965509, guid: 39ce21039d2893e4d8de8029054dc920, type: 3}
   player: {fileID: 0}
   coinMoveSpeed: 17
