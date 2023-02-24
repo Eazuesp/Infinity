@@ -61,9 +61,6 @@ public class Magnet : MonoBehaviour {
         }
 	}
 
-
-
-
         public void Collect()
 	{
 		if(collectSound)

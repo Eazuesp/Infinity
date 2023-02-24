@@ -1,3 +1,4 @@
+//using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +14,9 @@ public class ObstacleSpawner : MonoBehaviour
 
     public List<GameObject> obstacles = new List<GameObject>();
     public GameObject coins;
-    public GameObject magnet;
     public GameObject enemy;
+
+    public List<GameObject> collectibles;
 
     // Start is called before the first frame update
     void Start()
@@ -61,11 +63,12 @@ public class ObstacleSpawner : MonoBehaviour
                 } while (line1 == line2);
 
                 int type = Random.Range(0, 2);
-                // chance to spawn magnet on no obstacle spot
+                // chance to spawn collectibles on no obstacle spot
                 if (type == 0)
                 {
+                    int index = Random.Range(0, collectibles.Count);
                     // 0.7 + 0.5 = 1.3
-                    Instantiate(magnet, new Vector3(getX(line1), 1.3f, lastSpawnZ), magnet.transform.rotation);
+                    Instantiate(collectibles[index], new Vector3(getX(line1), 1.3f, lastSpawnZ), collectibles[index].transform.rotation);
                 }
                 else if (type == 1)
                 {

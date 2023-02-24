@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CoinDetector : MonoBehaviour
 {
-    public GameObject coinDetectorObj;
+    //public GameObject coinDetectorObj;
     public float buffTime;
     public float timer;
 
@@ -32,12 +32,12 @@ public class CoinDetector : MonoBehaviour
         if (timer > 0)
         {
             //coinDetectorObj.tag = "Coin Detector";
-            coinDetectorObj.SetActive(true);
+            //coinDetectorObj.SetActive(true);
             timer -= Time.deltaTime;
         }
         else
         {
-            coinDetectorObj.SetActive(false);
+            //coinDetectorObj.SetActive(false);
             //coinDetectorObj.tag = "Untagged";
         }
     }

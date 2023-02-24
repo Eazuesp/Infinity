@@ -7,8 +7,11 @@ TagManager:
   - SpawnTrigger
   - Coin
   - Coin Detector
-  - Magnet
   - Enemy
+  - Bubble
+  - Speed
+  - Magnet
+  - Honey
   layers:
   - Default
   - TransparentFX

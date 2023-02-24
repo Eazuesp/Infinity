@@ -2,16 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 using static EnemyAi;
+//using static UnityEditor.PlayerSettings;
 
 public class Enemy : MonoBehaviour
 {
 
     // AI from Quick 'n Dirty Devlog
-    private float movementSpeed = 5f;
+    public float movementSpeed;
     private Rigidbody enemyRb;
     private GameObject player;
     private float reactDistance = 50f;
+
+    public GameObject coin;
+
+    // search for player
+    public bool search = true;
 
     public Face faces;
     public GameObject SmileBody;
@@ -24,6 +31,9 @@ public class Enemy : MonoBehaviour
     private bool move;
     private Material faceMaterial;
 
+    public bool defeated = false;
+
+    public AudioClip hitSound;
 
     // Start is called before the first frame update
     void Start()
@@ -34,31 +44,54 @@ public class Enemy : MonoBehaviour
         // Animation
         faceMaterial = SmileBody.GetComponent<Renderer>().materials[1];
         currentState = SlimeAnimationState.Idle;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        float distance = Vector3.Distance(player.transform.position, transform.position);
-        Vector3 lookDirection;
-        Vector3 targetPos = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
-        if (distance <= reactDistance)
+        if (search)
         {
-            if (distance > 5f)
+            float distance = Vector3.Distance(player.transform.position, transform.position);
+            Vector3 lookDirection;
+            Vector3 targetPos = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
+            if (distance <= reactDistance)
             {
-                targetPos.z += (distance / 2f);
+                if (distance > 5f)
+                {
+                    targetPos.z += (distance / 2f);
+                }
+                lookDirection = (targetPos - transform.position).normalized;
+                //enemyRb.AddForce(lookDirection * movementSpeed);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(new Vector3(lookDirection.x, 0, lookDirection.z)), 700 * Time.deltaTime);
+                //Quaternion.LookRotation(new Vector3(lookDirection.x, 0 ,lookDirection.z));
+                currentState = SlimeAnimationState.Walk;
+                //animator.SetFloat("Speed", movementSpeed);
+                animator.speed = movementSpeed;
+                //transform.position = Vector3.MoveTowards(transform.position, targetPos,
+                //    movementSpeed);
+                if (distance < 5f)
+                {                    
+                    enemyRb.AddForce(lookDirection * 15);
+                    currentState = SlimeAnimationState.Attack;
+                }
             }
-            lookDirection = (targetPos - transform.position).normalized;
-            enemyRb.AddForce(lookDirection * movementSpeed);
-        } else
-        {
-            lookDirection = (targetPos - transform.position).normalized;
-            enemyRb.AddForce(lookDirection * movementSpeed * 0.2f);
+            else
+            {
+                lookDirection = (targetPos - transform.position).normalized;
+                //enemyRb.AddForce(lookDirection * movementSpeed * 0.2f);
+                transform.rotation = Quaternion.LookRotation(lookDirection);
+                currentState = SlimeAnimationState.Walk;
+                // animator.SetFloat("Speed", movementSpeed * .2f);
+                animator.speed = movementSpeed * .2f;
+                //transform.position = Vector3.MoveTowards(transform.position, targetPos,
+                //    movementSpeed * .2f);
 
-        }
-        if ((transform.position.z - player.transform.position.z) < -3f)
-        {
-            Destroy(gameObject);
+            }
+            if ((transform.position.z - player.transform.position.z) < -3f)
+            {
+                Destroy(gameObject);
+            }
         }
 
 
@@ -162,10 +195,39 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void SetFace(Texture tex)
+    private void OnCollisionEnter(Collision collision)
     {
-        faceMaterial.SetTexture("_MainTex", tex);
+        if (collision.gameObject.tag == "Bubble")
+        {
+            if (hitSound)
+            {
+                AudioSource.PlayClipAtPoint(hitSound, transform.position);
+            }
+            search = false;
+            defeated = true;
+            damType = 2;
+            currentState = SlimeAnimationState.Damage;
+            StartCoroutine(WaitAndRestart(1f));
+        }
     }
+    private IEnumerator WaitAndRestart(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+
+        GameObject coinObj;
+        coinObj = Instantiate(coin, new Vector3(transform.position.x + 2f, transform.position.y, transform.position.z), coin.transform.rotation);
+        coinObj.GetComponent<Coin>().attr = true;
+        coinObj = Instantiate(coin, new Vector3(transform.position.x, transform.position.y, transform.position.z+2f), coin.transform.rotation);
+        coinObj.GetComponent<Coin>().attr = true;
+        coinObj = Instantiate(coin, new Vector3(transform.position.x, transform.position.y, transform.position.z-2f), coin.transform.rotation);
+        coinObj.GetComponent<Coin>().attr = true;
+        Destroy(gameObject);
+    }
+
+void SetFace(Texture tex)
+{
+    faceMaterial.SetTexture("_MainTex", tex);
+}
 
     public void AlertObservers(string message)
     {
@@ -202,7 +264,9 @@ public class Enemy : MonoBehaviour
         // apply root motion to AI
         Vector3 position = animator.rootPosition;
         //position.y = agent.nextPosition.y;
-        transform.position = position;
+        transform.position = new Vector3(position.x, position.y, position.z);
+            //    movementSpeed * .2f);
+        //transform.position = position;
         //agent.nextPosition = transform.position;
     }
 }

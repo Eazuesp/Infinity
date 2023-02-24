@@ -26,6 +26,9 @@ public class RoadSpawner : MonoBehaviour
         movedRoad.transform.position = new Vector3(0, 0, newZ);
         roads.Add(movedRoad);
 
-        movedRoad.transform.Find("SpawnTrigger").GetComponent<Collider>().enabled = true;
+        //movedRoad.transform.Find("SpawnTrigger").GetComponent<Collider>().enabled = true;
+        movedRoad.transform.Find("SpawnTrigger").GetComponent<SpawnTrigger>().isEntered = false;
+        movedRoad.transform.Find("SpawnTrigger").GetComponent<Collider>().isTrigger= true;
+
     }
 }
